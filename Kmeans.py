@@ -202,14 +202,8 @@ class KMeans():
                 clusters_a_eliminar.append(k)
 
         if len(clusters_a_eliminar):
-            print(f"antes: {centroids.shape}")
             centroids = np.delete(centroids, clusters_a_eliminar, axis=0)
-            print(f"despues: {centroids.shape}")
-
-        # borrar
-        #unique, counts = np.unique(centroids, return_counts=True)
-        #print(f"coincidencias2: {dict(zip(unique, counts))}") 
-        
+            
         return centroids
     
     
