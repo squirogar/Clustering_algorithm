@@ -51,8 +51,11 @@ class KMeans():
                 centroids_best_run = centroids
                 index_centroids_best_run = index_centroids 
 
-            print(f"menor costo encontrado hasta el momento: {hist_cost_best_run[-1]}") 
-        
+            if verbose:
+                print(f"menor costo encontrado hasta el momento: {hist_cost_best_run[-1]}") 
+
+            print(f"Ejecucion {i} terminada")
+
         # retornar el costo, centroids y los index_centroids de la ejecución con el menor costo
         return hist_cost_best_run, centroids_best_run, index_centroids_best_run
 
@@ -103,9 +106,7 @@ class KMeans():
         K = centroids.shape[0]
         index_centroids = np.zeros(X.shape[0], dtype=int)
         
-        print("Running K-means algorithm ...")
         for i in range(num_iterations):
-            print(f"Iteration {i}")
             # asignamos los ejemplos al cluster más cercano
             index_centroids = self.__find_closests_centroids(X, centroids)
             # movemos los centroids al promedio de los ejemplos del cluster
@@ -119,9 +120,7 @@ class KMeans():
             K = centroids.shape[0]
             
             if verbose:
-                print(f"Costo en iteracion {i}: {cost[i]}") # costo
-        
-        print("Finished.")
+                print(f"Costo en iteracion {i}: {cost[i]}") # costo        
         
         return cost, centroids, index_centroids
 
@@ -168,8 +167,6 @@ class KMeans():
             - centroids (ndarray (K, n)): K centroids con sus nuevas ubicaciones
         
         """
-        
-        
         centroids = np.zeros((K, X.shape[1]))
         for k in range(K):
             ejemplos_cluster = X[index_cent == k] # ejemplos asignados al centroid k
@@ -182,7 +179,7 @@ class KMeans():
     
     def __delete_empty_clusters(self, index_centroids, centroids):
         """
-        Elimina los centroids del array de centroids cuyos clusters están vaciós. 
+        Elimina los centroids cuyos clusters están vaciós. 
 
         Args: 
             - index_centroids (ndarray (m,)): numpy array con los índices de los centroids 
