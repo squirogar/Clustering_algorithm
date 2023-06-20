@@ -210,7 +210,7 @@ class KMeans():
         """
         Retorna el costo calculado a partir de la función de costo o distortion que el algoritmo 
         K-means intenta minimizar.
-        La función de costo o distortio utilizada es el promedio de las distancias al cuadrado
+        La función de costo o distortion utilizada es el promedio de las distancias al cuadrado
         entre cada ejemplo X[i] y la ubicación del centroid en su cluster.
         
         Args:
